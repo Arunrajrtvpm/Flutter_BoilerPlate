@@ -21,30 +21,35 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
         DataState response =
             await repository.callLoginApi(apiRequest: event.requestBody);
-        if (response is DataSuccess) {
-          //MARK: Modify the below conditions according to the response data. The below conditions are sample.
-          if (response.data?.status?.text == "OK" &&
-              response.data?.status?.errorCode == null) {
-            authBloc.add(AppLogin(
-                username: event.requestBody.login.email,
-                token: response.data?.token?.text ?? ""));
-            emit(LoginSuccess(data: response.data));
-          } else {
-            if (response.data?.status?.errorCode != null) {
-              if (response.data?.status?.errorCode == "20") {
-                emit(LoginFailure(error: Strings.userDoesntExist));
-              } else if (response.data?.status?.errorCode == "21") {
-                emit(LoginFailure(error: Strings.invalidCredential));
-              } else {
-                emit(LoginFailure(error: Strings.serverError));
-              }
-            } else {
-              emit(LoginFailure(error: Strings.serverError));
-            }
-          }
-        } else {
-          emit(LoginFailure(error: response.error));
-        }
+
+        //MARK:Enable the below code when proper API and Server setup available.
+        //For testing purpose- emitting the LoginSuccess
+        emit(LoginSuccess(data: response.data));
+
+        // if (response is DataSuccess) {
+        //   //MARK: Modify the below conditions according to the response data. The below conditions are sample.
+        //   if (response.data?.status?.text == "OK" &&
+        //       response.data?.status?.errorCode == null) {
+        //     authBloc.add(AppLogin(
+        //         username: event.requestBody.login.email,
+        //         token: response.data?.token?.text ?? ""));
+        //     emit(LoginSuccess(data: response.data));
+        //   } else {
+        //     if (response.data?.status?.errorCode != null) {
+        //       if (response.data?.status?.errorCode == "20") {
+        //         emit(LoginFailure(error: Strings.userDoesntExist));
+        //       } else if (response.data?.status?.errorCode == "21") {
+        //         emit(LoginFailure(error: Strings.invalidCredential));
+        //       } else {
+        //         emit(LoginFailure(error: Strings.serverError));
+        //       }
+        //     } else {
+        //       emit(LoginFailure(error: Strings.serverError));
+        //     }
+        //   }
+        // } else {
+        //   emit(LoginFailure(error: response.error));
+        // }
       } catch (e) {
         //TODO: This line is not correct. it just added for testing the login page.
         //When the correct login API available, remove the below line and activate the LoginFailure.

@@ -24,7 +24,7 @@ class InAppCustomButton extends StatelessWidget {
           )),
           padding: WidgetStateProperty.all<EdgeInsetsGeometry>(
               const EdgeInsets.all(5)),
-          backgroundColor: WidgetStateProperty.all<Color>(primaryColor),
+          backgroundColor: WidgetStateProperty.all<Color>(LightCodeColors.primaryColor),
         ),
         onPressed: onPressed,
         child: Text(

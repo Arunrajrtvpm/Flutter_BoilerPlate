@@ -59,7 +59,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
         );
       },
       child: Scaffold(
-        backgroundColor: white1,
+        backgroundColor: LightCodeColors.white1,
         body: Center(
           child: Padding(
             padding:
