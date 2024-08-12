@@ -16,8 +16,6 @@ class ThemeHelper {
 
   ThemeData _getThemeData() {
     var colorScheme = ColorSchemes.lightCodeColorScheme;
-    var sampleColorScheme = ColorScheme.fromSeed(
-        seedColor: Colors.orangeAccent.shade400);
 
     return ThemeData(
       fontFamily: TextStyles.gotham,
@@ -31,8 +29,7 @@ class ThemeHelper {
 
 /// Class containing the supported text theme styles.
 class TextThemes {
-  static TextTheme textTheme(ColorScheme colorScheme) =>
-      const TextTheme(
+  static TextTheme textTheme(ColorScheme colorScheme) => const TextTheme(
         bodySmall: TextStyles.textStyle12Black,
         labelLarge: TextStyles.textStyle12,
         displayLarge: TextStyles.textStyle20DarkBlue,

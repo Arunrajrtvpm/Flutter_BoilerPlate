@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_boilerplate/presentation/dashboard/bloc/home_bloc.dart';
 import 'package:flutter_boilerplate/presentation/login/bloc/authentication/authentication_bloc.dart';
-import 'package:flutter_boilerplate/utils/constants/app_constants.dart';
+import 'package:flutter_boilerplate/utils/constants/string_constants.dart';
 
 import 'config/dependency_injection/locator.dart';
 import 'config/router/go_router_helper.dart';
@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       routerConfig: router,
-      title: Constants.appName,
+      title: Strings.appName,
       theme: theme
     );
   }

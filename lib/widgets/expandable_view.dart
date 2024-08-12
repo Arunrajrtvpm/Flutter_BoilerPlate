@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../../config/themes/text_styles.dart';
 import '../../utils/constants/color_constants.dart';
 
@@ -31,7 +32,8 @@ class ExpandableViewState extends State<ExpandableView> {
       borderRadius: BorderRadius.circular(12.0), // Set border radius here
       child: Container(
         decoration: const BoxDecoration(
-          color: lightOrange, // Set your desired background color
+          color:
+              LightCodeColors.lightOrange, // Set your desired background color
         ),
         child: SingleChildScrollView(
           child: Column(
@@ -45,10 +47,10 @@ class ExpandableViewState extends State<ExpandableView> {
                 },
                 children: [
                   ExpansionPanel(
-                    backgroundColor: lightOrange,
+                    backgroundColor: LightCodeColors.lightOrange,
                     headerBuilder: (BuildContext context, bool isExpanded) {
                       return ListTile(
-                        tileColor: lightOrange,
+                        tileColor: LightCodeColors.lightOrange,
                         leading: Container(
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,

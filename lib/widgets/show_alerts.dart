@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
+import '../utils/constants/string_constants.dart';
+
 Future<void> showSingleActionButtonAlertDialog(
     {context,
-    title = 'Warning',
+    title = Strings.warning,
     message,
     positiveButtonMessage = 'Ok',
     positiveTap,

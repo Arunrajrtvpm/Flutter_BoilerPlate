@@ -1,4 +1,5 @@
 class Strings {
+  static const appName = "InApp Flutter";
   static const userName = "Username";
   static const password = "Password";
   static const login = "Login";
@@ -38,5 +39,9 @@ class Strings {
   static const addAPIVersionHeader = {'version': '1.0.0'};
   static const snackBarDuration = 3;
   static const close=  "Close";
-
+  static const forgotPassword=  "Forgot Password";
+  static const welcomeMessage= "Welcome to the Sample Flutter App";
+  static const warning= "Warning";
+  static const enterValidPhoneNumber= "Please enter a valid phone number";
+  static const enterValidEmail= "Please enter a valid email";
 }

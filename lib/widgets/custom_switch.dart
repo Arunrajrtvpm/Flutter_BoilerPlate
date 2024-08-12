@@ -30,7 +30,7 @@ class CustomSwitchState extends State<CustomSwitch> {
         height: 30.0, // Adjust height as needed
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15.0),
-          color: widget.value ? maroon : grey2,
+          color: widget.value ? LightCodeColors.maroon : LightCodeColors.grey2,
         ),
         child: Stack(
           children: [

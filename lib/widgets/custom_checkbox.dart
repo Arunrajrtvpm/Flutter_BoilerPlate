@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../config/themes/text_styles.dart';
+
 class CustomCheckbox extends StatelessWidget {
   final bool value;
   final ValueChanged<bool?> onChanged;
@@ -23,7 +25,7 @@ class CustomCheckbox extends StatelessWidget {
         ),
         Text(
           label,
-          style: const TextStyle(fontSize: 16, color: Colors.black),
+          style: TextStyles.textStyle15Black1,
         ),
       ],
     );

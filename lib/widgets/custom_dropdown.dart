@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../../config/themes/text_styles.dart';
-import '../../utils/constants/color_constants.dart';
 
 class CustomDropdown extends StatefulWidget {
   final String label;

@@ -2,7 +2,6 @@ import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import '../../../../data/model/base_class/response_base_class.dart';
 import '../../../../data/model/login/request/login_request.dart';
-import '../../../../utils/constants/string_constants.dart';
 import '../../repository/login_repository.dart';
 import '../authentication/authentication_bloc.dart';
 

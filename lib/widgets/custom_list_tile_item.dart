@@ -18,9 +18,9 @@ class CustomImageAvatarWidget extends StatelessWidget {
         padding: const EdgeInsets.all(10),
         decoration: const BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(16)),
-            color: lightOrange,
+            color: LightCodeColors.lightOrange,
             boxShadow: [
-              BoxShadow(color: lightGrey, blurRadius: 6),
+              BoxShadow(color: LightCodeColors.lightGrey, blurRadius: 6),
             ]),
         child: CircleAvatar(
             backgroundImage: Image.asset(

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../utils/constants/app_constants.dart';
+import '../utils/constants/string_constants.dart';
+
 class CustomTextField extends StatelessWidget {
   final TextEditingController controller;
   final String labelText;
@@ -36,9 +39,9 @@ class CustomTextField extends StatelessWidget {
         if (value == null || value.isEmpty) {
           return 'Please enter ${_getFieldName()}';
         } else if (isEmail && !isValidEmail(value)) {
-          return 'Please enter a valid email';
+          return Strings.enterValidEmail;
         } else if (isPhone && !isValidPhoneNumber(value)) {
-          return 'Please enter a valid phone number';
+          return Strings.enterValidPhoneNumber;
         }
         return null;
       },
@@ -61,13 +64,11 @@ class CustomTextField extends StatelessWidget {
   }
 
   bool isValidEmail(String value) {
-    final emailRegex = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
-    return emailRegex.hasMatch(value);
+    return Constants.emailRegex.hasMatch(value);
   }
 
   bool isValidPhoneNumber(String value) {
-    final phoneRegex = RegExp(r'^[0-9]{10}$');
-    return phoneRegex.hasMatch(value);
+    return Constants.phoneRegex.hasMatch(value);
   }
 
   String _getFieldName() {

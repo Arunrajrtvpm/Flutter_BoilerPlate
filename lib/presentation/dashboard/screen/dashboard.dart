@@ -7,6 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../utils/constants/asset_constants.dart';
 import '../../../utils/constants/color_constants.dart';
+import '../../../utils/constants/string_constants.dart';
 import '../../../utils/helper_class/connectivity_helper.dart';
 import '../../home_viewer/widgets/close_app_dialog.dart';
 import '../bloc/home_bloc.dart';
@@ -84,7 +85,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
     return BlocBuilder<HomeBloc, HomeState>(
       builder: (context, state) {
         return const Center(
-          child: Text("Welcome to the Sample Flutter App"),
+          child: Text(Strings.welcomeMessage),
         );
       },
     );

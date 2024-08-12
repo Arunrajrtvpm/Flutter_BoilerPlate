@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 class CustomLogo extends StatelessWidget {
   final String imagePath;
   final double size;
@@ -10,7 +9,12 @@ class CustomLogo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      child: Image.asset(imagePath, width: size, height: size, fit: BoxFit.contain,),
+      child: Image.asset(
+        imagePath,
+        width: size,
+        height: size,
+        fit: BoxFit.contain,
+      ),
     );
   }
 }
