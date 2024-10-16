@@ -9,6 +9,7 @@ import '../../utils/helper_class/connectivity_helper.dart';
 
 
 var locator = GetIt.instance;
+
 initializeDependencies() async {
   var dioManager = DioManager();
   locator.registerSingleton<Dio>(dioManager.getDioInstance());
@@ -20,5 +21,5 @@ initializeDependencies() async {
 
 void initializeBlocDependencies() {
   locator.registerSingleton(UserRepository());
-   locator.registerSingleton(LoginRepository(datasource: locator.get()));
+  locator.registerSingleton(LoginRepository(datasource: locator.get()));
 }

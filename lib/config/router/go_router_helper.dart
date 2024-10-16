@@ -2,8 +2,10 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../presentation/dashboard/bloc/home_bloc.dart';
 import '../../presentation/dashboard/screen/dashboard.dart';
 import '../../presentation/home_viewer/home_viewer.dart';
+import '../../presentation/login/bloc/authentication/authentication_bloc.dart';
 import '../../presentation/login/bloc/login/login_bloc.dart';
 import '../../presentation/login/screen/login_screen.dart';
 import '../../presentation/splash_screen/splash_screen.dart';
@@ -24,12 +26,14 @@ final router = GoRouter(
         builder: (context, state) => const SplashScreen(),
       ),
       GoRoute(
-          path: RouterPath.login,
-          builder: (context, state) => BlocProvider(
-                create: (context) => LoginBloc(
-                    repository: locator.get(), authBloc: context.read()),
-                child: const LoginScreen(),
-              )),
+        path: RouterPath.login,
+        builder: (context, state) => BlocProvider(
+          create: (context) => LoginBloc(
+              repository: locator.get(),
+              authBloc: context.read<AuthenticationBloc>()),
+          child: const LoginScreen(),
+        ),
+      ),
       ShellRoute(
           navigatorKey: _shellNavigatorKey,
           builder: (BuildContext context, GoRouterState state, Widget child) {
@@ -37,8 +41,11 @@ final router = GoRouter(
           },
           routes: [
             GoRoute(
-                path: RouterPath.home,
-                builder: (context, state) => const DashboardScreen(),
-                routes: const []),
+              path: RouterPath.home,
+              builder: (context, state) => BlocProvider(
+                create: (context) => HomeBloc(),
+                child: const DashboardScreen(),
+              ),
+            ),
           ])
     ]);

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_boilerplate/presentation/dashboard/bloc/home_bloc.dart';
 import 'package:flutter_boilerplate/presentation/login/bloc/authentication/authentication_bloc.dart';
 import 'package:flutter_boilerplate/utils/constants/string_constants.dart';
 
@@ -15,17 +14,13 @@ void main() async {
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]);
-  runApp(MultiBlocProvider(
-    providers: [
-      BlocProvider(
-        create: (context) => AuthenticationBloc(repository: locator.get()),
-      ),
-      BlocProvider(
-        create: (context) => HomeBloc(),
-      )
-    ],
-    child: const MyApp(),
-  ));
+  runApp(
+    BlocProvider(
+      // Create global AuthenticationBloc
+      create: (context) => AuthenticationBloc(repository: locator.get()),
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
