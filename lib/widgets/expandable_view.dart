@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import '../../config/themes/text_styles.dart';
 import '../../utils/constants/color_constants.dart';
 
+//This reusable widget provides a collapsible section with a header and expandable content area.
+//It's ideal for displaying detailed information that can be hidden or revealed based on user interaction.
+
 class ExpandableView extends StatefulWidget {
   const ExpandableView({
     super.key,
@@ -11,6 +14,7 @@ class ExpandableView extends StatefulWidget {
     required this.onExpansionChanged,
     required this.icon,
     required this.data,
+    required this.imagePath,
   });
 
   final String label;
@@ -18,6 +22,7 @@ class ExpandableView extends StatefulWidget {
   final Function(bool isExpanded) onExpansionChanged;
   final IconData icon;
   final String data;
+  final String imagePath;
 
   @override
   ExpandableViewState createState() => ExpandableViewState();
@@ -63,13 +68,10 @@ class ExpandableViewState extends State<ExpandableView> {
                           child: Padding(
                             padding: const EdgeInsets.all(7.0),
                             child: Image.asset(
-                              'assets/images/logo.png',
-                              // Replace with your image asset path
+                              widget.imagePath,
                               color: Colors.white,
-                              // Optional: Apply color to the image (if needed)
                               width: 18,
-                              // Set the width of the image
-                              height: 18, // Set the height of the image
+                              height: 18,
                             ),
                           ),
                         ),
