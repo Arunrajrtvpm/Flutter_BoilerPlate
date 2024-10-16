@@ -1,61 +1,22 @@
+import 'package:flutter_boilerplate/utils/constants/app_constants.dart';
 import 'package:intl/intl.dart';
 
-String getCurrentDate() {
-  DateTime now = DateTime.now();
-  String formattedDate = "${now.day.toString().padLeft(2, '0')}/"
-      "${now.month.toString().padLeft(2, '0')}/"
-      "${now.year.toString().padLeft(2, '0')}";
-
+/// Gets the current date formatted as DD/MM/YYYY.
+String getCurrentFormattedDate() {
+  final now = DateTime.now();
+  final formattedDate = DateFormat(Constants.dateFormatWithoutTime).format(now);
   return formattedDate;
 }
 
-getOfsValue() {
-  return "19800000";
-}
-
-getDateFromTmeStamp(millis) {
-  if (millis == null) {
-    return "";
-  } else if (millis is String && millis.isEmpty) {
+/// Gets a formatted date string from a timestamp in milliseconds.
+String getFormattedDateFromTimestamp(int milliseconds) {
+  if (milliseconds == null || milliseconds.toString().isEmpty) {
     return "";
   }
   try {
-    var dt = DateTime.fromMillisecondsSinceEpoch(int.parse(millis.toString()));
-
-// 24 Hour format:
-    return DateFormat('dd/MM/yyyy hh:mm a').format(dt); // 31/12/2000, 22:00
-  } catch (e) {
-    return "";
-  }
-}
-
-getHourFromTmestamp(millis) {
-  if (millis == null) {
-    return "";
-  } else if (millis is String && millis.isEmpty) {
-    return "";
-  }
-  try {
-    var dt = DateTime.fromMillisecondsSinceEpoch(int.parse(millis.toString()));
-
-// 24 Hour format:
-    return DateFormat('hh:mm a').format(dt); // 31/12/2000, 22:00
-  } catch (e) {
-    return "";
-  }
-}
-
-getOnlyDateFromTmestamp(millis) {
-  if (millis == null) {
-    return "";
-  } else if (millis is String && millis.isEmpty) {
-    return "";
-  }
-  try {
-    var dt = DateTime.fromMillisecondsSinceEpoch(int.parse(millis.toString()));
-
-// 24 Hour format:
-    return DateFormat('dd/MM/yyyy').format(dt); // 31/12/2000, 22:00
+    final dt = DateTime.fromMillisecondsSinceEpoch(milliseconds);
+    final formattedDate = DateFormat(Constants.dateFormatWithTime).format(dt);
+    return formattedDate;
   } catch (e) {
     return "";
   }
