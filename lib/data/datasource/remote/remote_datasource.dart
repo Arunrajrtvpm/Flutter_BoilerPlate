@@ -4,7 +4,6 @@ import 'package:dio/dio.dart';
 import '../../../utils/constants/enums.dart';
 import '../../../utils/constants/string_constants.dart';
 import '../../../utils/helper_class/connectivity_helper.dart';
-import '../../../utils/helper_class/event_bus.dart';
 import '../../model/base_class/failure.dart';
 import '../../model/base_class/response_base_class.dart';
 
@@ -25,7 +24,7 @@ class RemoteDataSource {
             data: requestBody, options: Options(method: method.name));
         return validateResponse(response);
       } on TokenException {
-        EventBusListener().fire(LogoutEventBus());
+        //Write code for logout the app here
         return DataFailure("token expired");
       } on DioException catch (dioException) {
         return DataFailure(dioException.message ?? "");

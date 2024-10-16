@@ -10,9 +10,11 @@ String getCurrentFormattedDate() {
 
 /// Gets a formatted date string from a timestamp in milliseconds.
 String getFormattedDateFromTimestamp(int milliseconds) {
-  if (milliseconds == null || milliseconds.toString().isEmpty) {
+  // Ensure the timestamp is a valid positive number
+  if (milliseconds <= 0) {
     return "";
   }
+
   try {
     final dt = DateTime.fromMillisecondsSinceEpoch(milliseconds);
     final formattedDate = DateFormat(Constants.dateFormatWithTime).format(dt);

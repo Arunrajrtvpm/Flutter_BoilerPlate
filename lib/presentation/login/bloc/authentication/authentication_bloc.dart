@@ -1,6 +1,5 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
-import '../../../../utils/helper_class/event_bus.dart';
 import '../../repository/user_repository.dart';
 
 part 'authentication_event.dart';
@@ -12,9 +11,7 @@ class AuthenticationBloc
 
   AuthenticationBloc({required this.repository})
       : super(AuthenticationInitial()) {
-    EventBusListener().on<LogoutEventBus>().listen((event) {
-      add(AppLogout());
-    });
+
     on<AppStarted>((event, emit) async {
       if (await repository.hasToken()) {
         emit(AuthenticationSuccess());

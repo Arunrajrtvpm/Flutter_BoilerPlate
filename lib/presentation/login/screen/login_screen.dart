@@ -14,7 +14,6 @@ import '../../../utils/constants/color_constants.dart';
 import '../../../utils/constants/enums.dart';
 import '../../../utils/constants/router_constants.dart';
 import '../../../utils/constants/string_constants.dart';
-import '../../../utils/helper_class/secure_storage.dart';
 import '../../../widgets/app_loader.dart';
 import '../../../widgets/custom_button.dart';
 import '../../../widgets/custom_checkbox.dart';
@@ -37,7 +36,6 @@ class _LoginScreenState extends State<LoginScreen> {
     super.initState();
     _usernameController = TextEditingController(text: '');
     _passwordController = TextEditingController(text: '');
-    getCredentialsFromSecureStorage();
   }
 
   @override
@@ -53,11 +51,9 @@ class _LoginScreenState extends State<LoginScreen> {
       listener: (context, state) async {
         if (state is LoginSuccess) {
           if (isRememberMeChecked) {
-            saveCredentialsToSecure(
-                email: _usernameController.text.trim(),
-                password: _passwordController.text.trim());
+            //MARK: Create a Flutter Secure storage and store the details in it.
           } else {
-            clearCredentialsInSecure();
+            //MARK:Clear all the existing data from the Secure storage.
           }
           showSnackBar(ToastStyle.success, context, Strings.loginSuccessful);
 
@@ -222,7 +218,6 @@ class _LoginScreenState extends State<LoginScreen> {
         text: Strings.login,
         onPressed: () {
           closeKeyboard(context);
-
           if (formKey.currentState!.validate()) {
             var loginRequest = LoginRequest(
                 login: Login(
@@ -285,33 +280,6 @@ class _LoginScreenState extends State<LoginScreen> {
         );
       },
     );
-  }
-
-  void getCredentialsFromSecureStorage() async {
-    if (await SecureStorage().isRememberMeEnabled() &&
-        await SecureStorage().hasEmail() &&
-        await SecureStorage().hasPassword()) {
-      String email = await SecureStorage().getEmail() ?? "";
-      String password = await SecureStorage().getPassword() ?? "";
-      // locator.get<LoginBloc>().add(RememberMeEnabledStatusEvent(
-      //     isEnabled: true, email: email, password: password));
-      isRememberMeChecked = true;
-      _usernameController.text = email;
-      _passwordController.text = password;
-
-      if (mounted) {
-        context.read<LoginBloc>().add(RememberMeCheckChangedEvent());
-      }
-    }
-  }
-
-  void saveCredentialsToSecure(
-      {required String email, required String password}) async {
-    await SecureStorage().persistEmailAndToken(email, password);
-  }
-
-  void clearCredentialsInSecure() async {
-    await SecureStorage().deleteAll();
   }
 
   _forgotPassword(Function()? callback) {
