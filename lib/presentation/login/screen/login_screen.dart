@@ -285,7 +285,8 @@ class _LoginScreenState extends State<LoginScreen> {
   _forgotPassword(Function()? callback) {
     return TextButton(
         onPressed: callback,
-        child: const Text(Strings.forgotPassword,
+        child: const Text(
+          Strings.forgotPassword,
           style: TextStyles.underlinedTextStyle16,
         ));
   }
