@@ -1,5 +1,5 @@
-
 import 'package:dio/dio.dart';
+import 'package:flutter/cupertino.dart';
 import 'network_config.dart';
 
 class DioManager {
@@ -18,20 +18,31 @@ class DioManager {
 
 final getInterceptors = InterceptorsWrapper(
   onRequest: (RequestOptions options, RequestInterceptorHandler handler) {
-    // Do something before request is sent.
-    // If you want to resolve the request with custom data,
-    // you can resolve a `Response` using `handler.resolve(response)`.
-    // If you want to reject the request with a error message,
-    // you can reject with a `DioException` using `handler.reject(dioError)`.
+    // Do something before request is sent. Below is some sample code.
+
+    // Add authentication token to the header
+    options.headers['Authorization'] = 'Bearer YOUR_TOKEN';
+    // Log request details
+    debugPrint('Request sent: ${options.path}');
     return handler.next(options);
   },
   onResponse: (Response response, ResponseInterceptorHandler handler) async {
+    // Handle successful responses, logging, etc.
+    debugPrint('Response[${response.statusCode}] => DATA: ${response.data}');
+
     return handler.next(response);
   },
   onError: (DioException error, ErrorInterceptorHandler handler) {
     // Do something with response error.
-    // If you want to resolve the request with some custom data,
-    // you can resolve a `Response` object using `handler.resolve(response)`.
+
+    // Handle errors, retry logic, logging, etc.
+    debugPrint(
+        'Error[${error.response?.statusCode}] => MESSAGE: ${error.message}');
+
+    if (error.response?.statusCode == 401) {
+      // Handle unauthorized error, refresh token logic, etc.
+      debugPrint('Unauthorized! Refreshing token...');
+    }
     return handler.next(error);
   },
 );
