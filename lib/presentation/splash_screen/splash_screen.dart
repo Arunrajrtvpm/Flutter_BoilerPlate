@@ -44,7 +44,9 @@ class _SplashScreenState extends State<SplashScreen> {
 
   void startTimer(path) {
     Future.delayed(Duration(milliseconds: splashDelay), () {
-      context.go(path);
+      if (mounted) {
+        context.go(path);
+      }
     });
   }
 }
