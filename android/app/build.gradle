@@ -62,9 +62,29 @@ android {
     }
     buildTypes {
         release {
-
             signingConfig signingConfigs.release
+        }
+    }
 
+    flavorDimensions += "default"
+
+    productFlavors {
+        development {
+            dimension = "default"
+            manifestPlaceholders = [appName: "[DEV]Flutter BoilerPlate"]
+            applicationIdSuffix = ".dev"
+        }
+
+        staging {
+            dimension = "default"
+            manifestPlaceholders = [appName: "[STG]Flutter BoilerPlate"]
+            applicationIdSuffix = ".stg"
+        }
+
+        production {
+            dimension = "default"
+            manifestPlaceholders = [appName: "Flutter BoilerPlate"]
+            applicationIdSuffix = ""
         }
     }
 }
