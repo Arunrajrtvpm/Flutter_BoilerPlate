@@ -1,7 +1,8 @@
 class NetworkConfig {
-  static const isProduction = false;
-  static const baseURL = isProduction ? prodUrl : devUrl;
+
+  static var baseURL=  devUrl;
   static const devUrl = "https://.............../";
+  static const stagingUrl = "https://.............../";
   static const prodUrl = "https://.............../";
 
   static const signUpURL = "https://...............";

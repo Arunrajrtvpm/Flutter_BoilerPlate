@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_boilerplate/data/datasource/remote/network_config.dart';
 import 'package:flutter_boilerplate/presentation/login/bloc/authentication/authentication_bloc.dart';
 import 'package:flutter_boilerplate/utils/constants/string_constants.dart';
 
@@ -14,6 +15,9 @@ void main() async {
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]);
+
+  NetworkConfig.baseURL = NetworkConfig.stagingUrl;
+  
   runApp(
     BlocProvider(
       // Create global AuthenticationBloc
